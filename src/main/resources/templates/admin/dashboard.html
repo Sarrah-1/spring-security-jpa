@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin</title>
+    <style>body { font-family: Arial, sans-serif; margin: 40px; }</style>
+</head>
+<body>
+<h1>Dashboard administrateur</h1>
+<p>Connecté en tant que <b sec:authentication="name">admin</b> — accès réservé au rôle <code>ADMIN</code>.</p>
+<p><a th:href="@{/home}">Retour à l'accueil</a></p>
+</body>
+</html>
