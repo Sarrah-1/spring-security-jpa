@@ -1,39 +1,11 @@
 # TP 11 – Authentification JDBC / JPA (Spring Security)
 
-Projet Spring Boot 3.3 / Java 17 : authentification par base MySQL (JPA), `UserDetailsService`
-personnalisé et mots de passe hachés avec BCrypt.
-
-## Prérequis
-- Java 17+
-- Maven 3.9+
-- MySQL en marche sur `localhost:3306` (utilisateur `root`, mot de passe vide – à adapter dans
-  `src/main/resources/application.properties`)
-
-## Base de données
-La base est créée automatiquement (`createDatabaseIfNotExist=true`). Pour la créer à la main :
-
-```sql
-CREATE DATABASE security_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-```
-
-## Lancement
-```bash
-mvn spring-boot:run
-```
-Puis ouvrir http://localhost:8080/login
-
 ## Comptes créés au démarrage (`DatabaseInitializer`)
 | Utilisateur | Mot de passe | Rôles               | Accès                                  |
 |-------------|--------------|---------------------|----------------------------------------|
 | admin       | 1234         | ROLE_ADMIN, ROLE_USER | `/admin/dashboard`, `/user/dashboard` |
 | user        | 1111         | ROLE_USER           | `/user/dashboard`                      |
 
-## Vérifications dans MySQL
-```sql
-USE security_db;
-SHOW TABLES;                 -- user, role, user_roles
-SELECT username, password FROM user;   -- mots de passe en $2a$... (BCrypt)
-```
 
 ## Structure
 ```
@@ -46,7 +18,16 @@ src/main/java/ma/fstg/security
 └── controllers/     AuthController (login, home, register, dashboards)
 ```
 
-## Notes
-- L'initialiseur ne recrée pas les comptes s'ils existent déjà (pas de doublons au redémarrage).
-- La page `/register` crée un compte avec le rôle `ROLE_USER`.
-- La déconnexion se fait par POST (protection CSRF activée par défaut).
+## Screen
+
+<img width="878" height="328" alt="image" src="https://github.com/user-attachments/assets/11a2c373-3dc0-4de5-ad55-dda972588947" />
+
+<img width="257" height="257" alt="image" src="https://github.com/user-attachments/assets/f68a7803-8a78-4cd7-851a-a125e8ac4aad" />
+
+<img width="357" height="200" alt="image" src="https://github.com/user-attachments/assets/ff094ca3-dbe1-4b04-950f-b7f6d484f02e" />
+
+<img width="369" height="176" alt="image" src="https://github.com/user-attachments/assets/ac08d65c-78b3-4493-b20f-6ca36e618a63" />
+
+<img width="405" height="177" alt="image" src="https://github.com/user-attachments/assets/a710001b-82fd-4dd6-86b8-5ce75115e002" />
+
+<img width="410" height="160" alt="image" src="https://github.com/user-attachments/assets/2ec4e24e-4897-4a38-8f72-8cb269000a60" />
